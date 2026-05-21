@@ -2,103 +2,181 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Calculadora</title>
 
-
-
 <style>
-body{
-    background:#222;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
-    font-family:Arial;
-}
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+    }
 
-.calculadora{
-    background:#333;
-    padding:20px;
-    border-radius:10px;
-}
+    body{
+        background: linear-gradient(90deg,#2196f3,#9c27b0,#ffeb3b);
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
-#pantalla{
-    width:100%;
-    height:50px;
-    font-size:22px;
-    margin-bottom:10px;
-    text-align:right;
-}
+    .contenedor{
+        width: 80%;
+        background: rgba(0,0,0,0.6);
+        border-radius: 10px;
+        padding: 20px;
+        color: white;
+        box-shadow: 0px 0px 15px black;
+    }
 
-button{
-    width:60px;
-    height:60px;
-    font-size:20px;
-    margin:4px;
-}
+    h1{
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .fila{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        border-bottom: 1px solid rgba(255,255,255,0.2);
+        padding-bottom: 15px;
+    }
+
+    .fila input{
+        width: 60%;
+        padding: 10px;
+        border-radius: 8px;
+        border: none;
+        outline: none;
+        font-size: 18px;
+    }
+
+    .resultado{
+        width: 80px;
+        text-align: center;
+        font-size: 40px;
+        font-weight: bold;
+    }
+
+    .botones{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    button{
+        padding: 12px;
+        border: none;
+        border-radius: 8px;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+        color: white;
+        transition: 0.3s;
+    }
+
+    button:hover{
+        transform: scale(1.03);
+    }
+
+    .rosa{
+        background: #ff5c8a;
+    }
+
+    .verde{
+        background: #3fe0c5;
+        grid-column: span 2;
+    }
+
+    #respuesta{
+        margin-top: 20px;
+        text-align: center;
+        font-size: 35px;
+        font-weight: bold;
+    }
 </style>
-
 </head>
 
 <body>
-    
- <a href="menu.html"> Volver al Menú</a>
-   
 
-<div class="calculadora">
+<div class="contenedor">
 
-<input id="pantalla" type="text" readonly>
+    <h1>CALCULADORA</h1>
 
-<br>
+    <div class="fila">
+        <div>
+            <h2>NUMERO 1</h2>
+            <input type="number" id="n1">
+        </div>
 
-<button onclick="agregarNumero('7')">7</button>
-<button onclick="agregarNumero('8')">8</button>
-<button onclick="agregarNumero('9')">9</button>
-<button onclick="agregarNumero('/')">÷</button>
-<br>
+        <div class="resultado" id="mostrar1">1</div>
+    </div>
 
-<button onclick="agregarNumero('4')">4</button>
-<button onclick="agregarNumero('5')">5</button>
-<button onclick="agregarNumero('6')">6</button>
-<button onclick="agregarNumero('*')">×</button>
-<br>
+    <div class="fila">
+        <div>
+            <h2>NUMERO 2</h2>
+            <input type="number" id="n2">
+        </div>
 
-<button onclick="agregarNumero('1')">1</button>
-<button onclick="agregarNumero('2')">2</button>
-<button onclick="agregarNumero('3')">3</button>
-<button onclick="agregarNumero('-')">-</button>
-<br>
+        <div class="resultado" id="mostrar2">1</div>
+    </div>
 
-<button onclick="agregarNumero('0')">0</button>
-<button onclick="agregarNumero('.')">.</button>
-<button onclick="calcular()">=</button>
-<button onclick="agregarNumero('+')">+</button>
-<br>
+    <div class="botones">
+        <button class="rosa" onclick="sumar()">SUMA</button>
+        <button class="rosa" onclick="restar()">RESTA</button>
+        <button class="rosa" onclick="multiplicar()">MULTIPLICACION</button>
+        <button class="rosa" onclick="dividir()">DIVISION</button>
+        <button class="verde" onclick="borrarTodo()">BORRAR</button>
+    </div>
 
-<button onclick="limpiar()">C</button>
+    <div id="respuesta">Resultado</div>
 
 </div>
 
 <script>
-function agregarNumero(valor){
-document.getElementById("pantalla").value += valor;
+
+let n1 = document.getElementById("n1");
+let n2 = document.getElementById("n2");
+
+n1.addEventListener("input",()=>{
+    document.getElementById("mostrar1").innerHTML = n1.value;
+});
+
+n2.addEventListener("input",()=>{
+    document.getElementById("mostrar2").innerHTML = n2.value;
+});
+
+function sumar(){
+    let r = Number(n1.value) + Number(n2.value);
+    document.getElementById("respuesta").innerHTML = r;
 }
 
-function calcular(){
-let operacion =
-document.getElementById("pantalla").value;
-
-try{
-document.getElementById("pantalla").value =
-eval(operacion);
-}catch{
-alert("Error");
-}
+function restar(){
+    let r = Number(n1.value) - Number(n2.value);
+    document.getElementById("respuesta").innerHTML = r;
 }
 
-function limpiar(){
-document.getElementById("pantalla").value="";
+function multiplicar(){
+    let r = Number(n1.value) * Number(n2.value);
+    document.getElementById("respuesta").innerHTML = r;
 }
+
+function dividir(){
+    let r = Number(n1.value) / Number(n2.value);
+    document.getElementById("respuesta").innerHTML = r;
+}
+
+function borrarTodo(){
+    n1.value = "";
+    n2.value = "";
+    document.getElementById("mostrar1").innerHTML = "1";
+    document.getElementById("mostrar2").innerHTML = "1";
+    document.getElementById("respuesta").innerHTML = "Resultado";
+}
+
 </script>
 
 </body>
