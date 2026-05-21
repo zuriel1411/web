@@ -1,0 +1,24 @@
+.fondo{background: #4037c4;
+background: linear-gradient(90deg,rgba(64, 55, 196, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: white;
+    transition: all 2s;
+}
+
+#figura{
+    display: block;
+    background: black;
+    width: 50px;
+    height: 50px;
+    border: 5px solid black;
+}
+
+.centrar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
